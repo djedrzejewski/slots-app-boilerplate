@@ -1,10 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * TODO: add key containing all columns, so the identical slots won't duplicate
+ *
  * @ORM\Entity(repositoryClass="App\Repository\SlotRepository")
  */
 class Slot
@@ -13,23 +17,25 @@ class Slot
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * TODO: Refactor to UUID
      */
     private $id;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $dateFrom;
+    private \DateTimeInterface $dateFrom;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $dateTo;
+    private \DateTimeInterface $dateTo;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $doctorId;
+    private int $doctorId;
 
     public function getId(): ?int
     {
@@ -41,11 +47,9 @@ class Slot
         return $this->dateFrom;
     }
 
-    public function setDateFrom(\DateTimeInterface $dateFrom): self
+    public function setDateFrom(\DateTimeInterface $dateFrom): void
     {
         $this->dateFrom = $dateFrom;
-
-        return $this;
     }
 
     public function getDateTo(): ?\DateTimeInterface
@@ -53,11 +57,9 @@ class Slot
         return $this->dateTo;
     }
 
-    public function setDateTo(\DateTimeInterface $dateTo): self
+    public function setDateTo(\DateTimeInterface $dateTo): void
     {
         $this->dateTo = $dateTo;
-
-        return $this;
     }
 
     public function getDoctorId(): ?int
@@ -65,10 +67,8 @@ class Slot
         return $this->doctorId;
     }
 
-    public function setDoctorId(int $doctorId): self
+    public function setDoctorId(int $doctorId): void
     {
         $this->doctorId = $doctorId;
-
-        return $this;
     }
 }

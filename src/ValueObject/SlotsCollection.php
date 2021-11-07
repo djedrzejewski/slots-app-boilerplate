@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\ValueObject;
@@ -8,7 +9,7 @@ use App\Entity\Slot;
 final class SlotsCollection
 {
     /** @var Slot[] */
-    private array $slots;
+    private array $slots = [];
 
     public function addSlot(Slot $slot): void
     {
@@ -18,5 +19,10 @@ final class SlotsCollection
     public function getSlots(): array
     {
         return $this->slots;
+    }
+
+    public function setSlots(array $slots): void
+    {
+        $this->slots = $slots;
     }
 }

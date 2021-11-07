@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Service;
@@ -13,6 +14,11 @@ final class VeryLazySlotsSorter implements SlotsSorter
     public function __construct(int $activeness)
     {
         $this->activeness = $activeness;
+    }
+
+    public function getName(): string
+    {
+        return 'veryLazy';
     }
 
     public function sort(SlotsCollection $slotsCollection): SlotsCollection
